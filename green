@@ -1,8 +1,22 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include <limits.h>
+
+int func_a(int num){
+    int result = 0;
+    for(int i = 1; i <= num; i++){
+        if(INT_MAX-i<result)
+        {
+            printf("Overflow error!\n");
+            result=0;
+            break;
+        }
+        else result+=i;
+    }
+    if(result) printf("%d ", result);
+}
+
 int func_h(int num){
     int c = 0;
     for(int i=1;i<101;i++){
@@ -13,7 +27,6 @@ int func_h(int num){
     }
     if(!c) printf("No such numbers\n");
 }
-
 
 int func_p(int num){
     int c = 0;
@@ -38,6 +51,7 @@ int func_s(int num){
     }
     for (int k=0;k<i;k++) printf("%d ", array_of_numbers[k]);
 }
+
 int func_e(int num){
     if(num>10) printf("Input number must be <= 10");
     else
@@ -52,19 +66,6 @@ int func_e(int num){
             printf("\n");
         }
     }
-}
-int func_a(int num){
-    int result = 0;
-    for(int i = 1; i <= num; i++){
-        if(INT_MAX-i<result)
-        {
-            printf("Overflow error!\n");
-            result=0;
-            break;
-        }
-        else result+=i;
-    }
-    if(result) printf("%d ", result);
 }
 
 int func_f(int num){
@@ -130,6 +131,15 @@ int main(int argc, char* argv[]){
     //--------------------------------------- Определение введенного флага и проверка на существование
 
     switch (argv[2][1]) {
+         case 'a':
+            func_a(num);
+            break;
+        case 'e':
+            func_e(num);
+            break;
+        case 'f':
+            func_f(num);
+            break;
         case 'h':
             func_h(num);
             break;
@@ -138,15 +148,6 @@ int main(int argc, char* argv[]){
             break;
         case 's':
             func_s(num);
-            break;
-        case 'e':
-            func_e(num);
-            break;
-        case 'a':
-            func_a(num);
-            break;
-        case 'f':
-            func_f(num);
             break;
         default:
             printf("Input error: wrong flag\n");
